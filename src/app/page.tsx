@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
 import Cart from "@/components/Cart";
@@ -17,7 +17,9 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await ProductRepository.fetchProducts(1);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://smart-cart-swart.vercel.app';
+        const productRepository = new ProductRepository(apiUrl);
+        const data = await productRepository.fetchProducts(1);
         setProducts(data.products);
       } catch (error) {
         console.error(error);
@@ -44,7 +46,10 @@ export default function Home() {
       </main>
     );
   }
-  if (isError) return <div className="text-center text-red-500">Error loading products.</div>;
+
+  if (isError) {
+    return <div className="text-center text-red-500">Error loading products.</div>;
+  }
 
   return (
     <main className="mt-5 max-w-4xl mx-auto p-4">
