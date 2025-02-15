@@ -13,10 +13,15 @@ export type ProductResponse = {
 };
 
 export class ProductRepository {
-  static async fetchProducts(page: number = 1, perPage: number = 6) {
+  private apiUrl: string;
+
+  constructor(apiUrl: string) {
+    this.apiUrl = apiUrl;
+  }
+
+  async fetchProducts(page: number = 1, perPage: number = 6) {
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${apiUrl}/api/products?page=${page}&perPage=${perPage}`);
+      const response = await fetch(`${this.apiUrl}/api/products?page=${page}&perPage=${perPage}`);
 
       if (!response.ok) {
         const errorDetails = await response.text();
