@@ -17,5 +17,4 @@ Smart Cart is a modern web application built using Next.js 15 and TypeScript. Th
 • Zustand<br><br>
 • Fetch API<br><br>
 • Prisma ORM<br><br>
-• Neon Serverless Postgres (database)<br><br>
-• React Testing Library (For testing React components with a focus on user interactions)<br><br>
+• Neon Serverless Postgres (database)
